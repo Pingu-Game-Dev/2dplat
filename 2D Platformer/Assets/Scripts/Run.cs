@@ -29,15 +29,19 @@ public class Run : MonoBehaviour
         }
         if (flag){
             if (speed < maxSpeed && speed > -maxSpeed){
-                speed = 10f * move * Mathf.Pow(t,2f);
+                speed = 20f * move * Mathf.Pow(t,2f);
                 t += Time.deltaTime;
             }
             else {}
         }
         else {
-            speed = 10f * Mathf.Pow(t,2f);
-            if (t > 0f){
+            if (t > 0f && speed > 0f){
                 t -= Time.deltaTime;
+                speed = 20f * Mathf.Pow(t,2f);
+            }
+            else if (t > 0f && speed <0f){
+                t -= Time.deltaTime;
+                speed = -20f * Mathf.Pow(t,2f);
             }
         }
     }
