@@ -2050,3 +2050,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
+  animator: {fileID: 1370543601}

@@ -6,6 +6,7 @@ public class Run : MonoBehaviour
 {
 
     public float maxSpeed = 5f;
+    public Animator animator;
     private GameObject player;
     float speed;
     float t = 0f;
@@ -20,20 +21,33 @@ public class Run : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("Move", move);
         move = Input.GetAxisRaw("Horizontal");
+
+
         if (move != 0f){
             flag = true;
         }
         else {
             flag = false;
         }
+
+        // MOVE = 1/-1 GO
         if (flag){
-            if (speed < maxSpeed && speed > -maxSpeed){
+
+            // MOVE LEFT
+
+
+            if (speed < maxSpeed && speed > - maxSpeed){
                 speed = 20f * move * Mathf.Pow(t,2f);
                 t += Time.deltaTime;
             }
-            else {}
+
         }
+
+
+
+        // MOVE = 0 STOP
         else {
             if (t > 0f && speed > 0f){
                 t -= Time.deltaTime;
