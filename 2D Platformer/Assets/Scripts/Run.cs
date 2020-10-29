@@ -6,6 +6,7 @@ public class Run : MonoBehaviour
 {
 
     public float maxSpeed = 5f;
+    public float sharpness = 1f;
     public Animator animator;
     private GameObject player;
     float speed;
@@ -39,7 +40,7 @@ public class Run : MonoBehaviour
 
 
             if (speed < maxSpeed && speed > - maxSpeed){
-                speed = 20f * move * Mathf.Pow(t,2f);
+                speed = 20f * move * Mathf.Pow(t*sharpness,2f);
                 t += Time.deltaTime;
             }
 
@@ -51,11 +52,11 @@ public class Run : MonoBehaviour
         else {
             if (t > 0f && speed > 0f){
                 t -= Time.deltaTime;
-                speed = 20f * Mathf.Pow(t,2f);
+                speed = 20f * Mathf.Pow(t*sharpness,2f);
             }
             else if (t > 0f && speed <0f){
                 t -= Time.deltaTime;
-                speed = -20f * Mathf.Pow(t,2f);
+                speed = -20f * Mathf.Pow(t*sharpness,2f);
             }
         }
     }
