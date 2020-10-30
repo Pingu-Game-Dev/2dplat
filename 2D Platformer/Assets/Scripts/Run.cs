@@ -12,7 +12,7 @@ public class Run : MonoBehaviour
     float speed;
     float t = 0f;
     float move = 0f;
-    bool flag = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,23 +25,18 @@ public class Run : MonoBehaviour
         animator.SetFloat("Move", move);
         move = Input.GetAxisRaw("Horizontal");
 
-        if (move != 0f){
-            flag = true;
-        }
-        else {
-            flag = false;
-        }
-
         // MOVE = 1/-1 GO
-        if (flag){
+        if (move != 0f){
 
             if (speed < maxSpeed && speed > - maxSpeed){
                 speed = 20f * move * Mathf.Pow(t*sharpness,2f);
                 t += Time.deltaTime;
             }
+            else if (speed >= maxSpeed || speed <= -maxSpeed){
+                speed = maxSpeed * move;
+            }
 
         }
-
 
         // MOVE = 0 STOP
         else {
@@ -55,10 +50,8 @@ public class Run : MonoBehaviour
             }
         }
 
-        if (speed >= maxSpeed || speed <= -maxSpeed){
-            speed = maxSpeed * move;
-        }
 
+        Debug.Log(t);
         
     }
 
