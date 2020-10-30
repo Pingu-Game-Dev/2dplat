@@ -8,6 +8,7 @@ public class Jump : MonoBehaviour
     public Transform groundCheck;
     public float jumpForce = 100f;
     public bool fullAirControl = true;
+    public float airSpeedDivider = 2f;
     bool jump = false;
     float speed;
     // Start is called before the first frame update
@@ -29,7 +30,6 @@ public class Jump : MonoBehaviour
 
 
     void FixedUpdate(){
-        Debug.Log(gameObject.GetComponent<Run>().maxSpeed);
         if(CheckforGround()){
             gameObject.GetComponent<Run>().maxSpeed = speed;
         }
@@ -37,13 +37,13 @@ public class Jump : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f,jumpForce));
             jump = false;
             if(!fullAirControl){
-                gameObject.GetComponent<Run>().maxSpeed /= 2f;
+                gameObject.GetComponent<Run>().maxSpeed /= airSpeedDivider;
             }
         }
     }
 
     bool CheckforGround(){
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(groundCheck.position, new Vector2(gameObject.transform.localScale.x,gameObject.transform.localScale.y / 10f), 0f,m_ground);
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(groundCheck.position, new Vector2(gameObject.transform.localScale.x * 0.7f,gameObject.transform.localScale.y / 10f), 0f,m_ground);
         
         if (hitColliders.Length > 0){
             return true;

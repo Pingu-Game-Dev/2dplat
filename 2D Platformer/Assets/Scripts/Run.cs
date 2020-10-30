@@ -25,7 +25,6 @@ public class Run : MonoBehaviour
         animator.SetFloat("Move", move);
         move = Input.GetAxisRaw("Horizontal");
 
-
         if (move != 0f){
             flag = true;
         }
@@ -36,16 +35,12 @@ public class Run : MonoBehaviour
         // MOVE = 1/-1 GO
         if (flag){
 
-            // MOVE LEFT
-
-
             if (speed < maxSpeed && speed > - maxSpeed){
                 speed = 20f * move * Mathf.Pow(t*sharpness,2f);
                 t += Time.deltaTime;
             }
 
         }
-
 
 
         // MOVE = 0 STOP
@@ -59,6 +54,12 @@ public class Run : MonoBehaviour
                 speed = -20f * Mathf.Pow(t*sharpness,2f);
             }
         }
+
+        if (speed >= maxSpeed || speed <= -maxSpeed){
+            speed = maxSpeed * move;
+        }
+
+        
     }
 
     void FixedUpdate(){
