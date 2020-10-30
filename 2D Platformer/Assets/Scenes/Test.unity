@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 337652541}
   - component: {fileID: 337652540}
   - component: {fileID: 337652539}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2106,7 +2106,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2158,3 +2158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986097c53e08ddf4d89b5f61abbf5714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ground:
+    serializedVersion: 2
+    m_Bits: 256
+  groundCheck: {fileID: 318555900}
+  jumpForce: 600
