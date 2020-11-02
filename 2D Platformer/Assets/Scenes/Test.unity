@@ -195,7 +195,6 @@ GameObject:
   - component: {fileID: 337652541}
   - component: {fileID: 337652540}
   - component: {fileID: 337652539}
-  - component: {fileID: 337652542}
   m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
@@ -2399,27 +2398,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!50 &337652542
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337652537}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 7051ba69aa0a843449870c8a479c4d5b, type: 2}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2762,6 +2740,7 @@ MonoBehaviour:
   maxSpeed: 10
   sharpness: 6
   animator: {fileID: 1370543601}
+  air: 0
 --- !u!114 &1370543603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2779,5 +2758,5 @@ MonoBehaviour:
     m_Bits: 256
   groundCheck: {fileID: 318555900}
   jumpForce: 600
-  fullAirControl: 1
+  fullAirControl: 0
   airSpeedDivider: 2

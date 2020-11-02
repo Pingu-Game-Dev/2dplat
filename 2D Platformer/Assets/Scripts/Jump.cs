@@ -32,14 +32,16 @@ public class Jump : MonoBehaviour
     void FixedUpdate(){
         if(CheckforGround()){
             gameObject.GetComponent<Run>().maxSpeed = speed;
+            gameObject.GetComponent<Run>().air = false;
         }
         if (CheckforGround() && jump){
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f,jumpForce));
             jump = false;
-            if(!fullAirControl){
-                gameObject.GetComponent<Run>().maxSpeed /= airSpeedDivider;
-            }
         }
+        if(!fullAirControl && !CheckforGround() && !gameObject.GetComponent<Run>().air){
+                gameObject.GetComponent<Run>().maxSpeed /= airSpeedDivider;
+                gameObject.GetComponent<Run>().air = true;
+            }
     }
 
     bool CheckforGround(){

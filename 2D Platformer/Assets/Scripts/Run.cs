@@ -12,6 +12,9 @@ public class Run : MonoBehaviour
     float speed;
     float t = 0f;
     float move = 0f;
+    public bool air = false;
+    float airDir = 0f;
+    bool airSlow = false;
     
     // Start is called before the first frame update
     void Start()
@@ -24,16 +27,34 @@ public class Run : MonoBehaviour
     {
         animator.SetFloat("Move", move);
         move = Input.GetAxisRaw("Horizontal");
+        if (!air){
+            airDir = 0f;
+            airSlow = false;
+        }
 
         // MOVE = 1/-1 GO
         if (move != 0f){
 
-            if (speed < maxSpeed && speed > - maxSpeed){
+            if (speed < maxSpeed && speed > -maxSpeed){
                 speed = 20f * move * Mathf.Pow(t*sharpness,2f);
                 t += Time.deltaTime;
             }
-            else if (speed >= maxSpeed || speed <= -maxSpeed){
+            else if ((speed >= maxSpeed || speed <= -maxSpeed) && (!air || airSlow)){
                 speed = maxSpeed * move;
+            }
+
+            if (air){
+                if ((speed >= maxSpeed) && airDir == 0f){
+                    airDir = 1f;
+                }
+                else if ((speed <= -maxSpeed) && airDir == 0f){
+                    airDir = -1f;
+                }
+
+
+                if (move != airDir){
+                    airSlow = true;
+                }
             }
 
         }
@@ -49,9 +70,6 @@ public class Run : MonoBehaviour
                 speed = -20f * Mathf.Pow(t*sharpness,2f);
             }
         }
-
-
-        Debug.Log(t);
         
     }
 
